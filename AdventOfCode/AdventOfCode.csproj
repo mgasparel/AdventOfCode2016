@@ -45,6 +45,7 @@
     <Compile Include="AdventOfCodeDay1.cs" />
     <Compile Include="AdventOfCodeDay2.cs" />
     <Compile Include="AdventOfCodeDay3.cs" />
+    <Compile Include="AdventOfCodeDay4.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
