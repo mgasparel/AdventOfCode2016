@@ -8,24 +8,17 @@ namespace AdventOfCode
 {
     public class AdventOfCodeDay3
     {
-        public List<Triangle> triangles = new List<Triangle>();
-
         public List<Triangle> ParseTrianglePerRow(string input)
         {
-            var inputLines = Common.GetLines(input);
-
-            foreach (var line in inputLines)
-            {
-                var sides = ParseSides(line);
-
-                triangles.Add(new Triangle(sides[0], sides[1], sides[2]));
-            }
-
-            return triangles;
+            return Common.GetLines(input)
+                .Select(inputLine => 
+                    new Triangle(ParseSides(inputLine))
+                ).ToList();
         }
 
         public List<Triangle> ParseTriangleTriplets(string input)
         {
+            var triangles = new List<Triangle>();
             string[] inputLines = Common.GetLines(input);
 
             List<Triangle> triangleTriplet = GetNewTriplet();
@@ -131,12 +124,12 @@ namespace AdventOfCode
             };
         }
 
-        public Triangle(int side1, int side2, int side3)
+        public Triangle(int[] sides)
         {
             Sides = new Dictionary<int, int>{
-                [1] = side1,
-                [2] = side2,
-                [3] = side3
+                [1] = sides[0],
+                [2] = sides[1],
+                [3] = sides[2]
             };
         }
     }

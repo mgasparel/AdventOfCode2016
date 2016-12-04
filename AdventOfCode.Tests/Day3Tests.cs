@@ -61,7 +61,7 @@ namespace AdventOfCode.Tests
         [TestMethod]
         public void IfTriangleHasAdjacentSidesShorterThanSelf_TriangleIsNotValid()
         {
-            var triangle = new Triangle(1, 1, 5);
+            var triangle = new Triangle(new int[]{ 1, 1, 5 });
 
             Assert.AreEqual(false, triangle.IsValid);
         }
@@ -69,7 +69,7 @@ namespace AdventOfCode.Tests
         [TestMethod]
         public void IfTriangleHasAdjacentSidesLongerThanSelf_TriangleIsValid()
         {
-            var triangle = new Triangle(1, 1, 1);
+            var triangle = new Triangle(new int[] { 1, 1, 1 });
 
             Assert.AreEqual(true, triangle.IsValid);
         }
@@ -77,7 +77,7 @@ namespace AdventOfCode.Tests
         [TestMethod]
         public void IfTriangleHasAdjacentSidesEqualToSelf_TriangleIsNotValid()
         {
-            var triangle = new Triangle(1, 1, 2);
+            var triangle = new Triangle(new int[] { 1, 1, 2 });
 
             Assert.AreEqual(false, triangle.IsValid);
         }
