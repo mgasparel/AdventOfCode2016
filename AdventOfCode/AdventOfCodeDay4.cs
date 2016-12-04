@@ -100,37 +100,19 @@ namespace AdventOfCode
 
                 foreach (char letter in input.ToCharArray())
                 {
-                    char newChar;
-
                     if (letter == '-')
                     {
-                        newChar = ' ';
+                        decrypted += ' ';
                     }
                     else
                     {
-                        int originalAlphabetIndex = GetAlphabetIndex(letter);
-                        int shiftedAlphabetIndex = originalAlphabetIndex + shiftFactor;
-                        int wrappedShiftedAlphabetIndex = shiftedAlphabetIndex % NumLettersInAlphabet;
+                        int shiftedAndOffset = (letter + shiftFactor - 'a');
 
-                        newChar = GetCharAtAlphabetIndex(wrappedShiftedAlphabetIndex);
+                        decrypted += (char)('a' + (shiftedAndOffset % NumLettersInAlphabet));
                     }
-
-                    decrypted += newChar;
                 }
 
                 return decrypted;
-            }
-
-            private static int GetAlphabetIndex(char letter)
-            {
-                return letter - 'a' + 1;
-            }
-
-            private static char GetCharAtAlphabetIndex(int index)
-            {
-                return index == 0
-                    ? 'z'
-                    : (char)(index + 'a' - 1);
             }
         }
     }
