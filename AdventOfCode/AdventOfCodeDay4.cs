@@ -42,16 +42,8 @@ namespace AdventOfCode
             public int Sector { get; set; }
             public string Checksum { get; set; }
 
-            public Room(string encryptedName, int sector, string checksum)
-            {
-                EncryptedName = encryptedName;
-                Sector = sector;
-                Checksum = checksum;
-            }
-
             public Room()
             {
-
             }
 
             public bool IsRealRoom
