@@ -11,7 +11,7 @@ namespace AdventOfCode
     {
         private string DecryptWith(string input, int iterations, Action<Dictionary<int, char>, string> implementation)
         {
-            Crypto hasher = new Crypto();
+            CryptoHasher hasher = new CryptoHasher();
 
             var doorIdChars = new Dictionary<int, char>();
             int hashIndex = 1;

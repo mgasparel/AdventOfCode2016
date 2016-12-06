@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace AdventOfCode
 {
-    public class Crypto
+    public class CryptoHasher
     {
         public MD5 Hasher { get; set; }
 
-        public Crypto()
+        public CryptoHasher()
         {
             Hasher = MD5.Create();
         }
