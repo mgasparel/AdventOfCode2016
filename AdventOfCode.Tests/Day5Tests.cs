@@ -23,6 +23,17 @@ namespace AdventOfCode.Tests
             Assert.AreEqual("1A3099AA", password);
         }
 
+
+        [TestMethod]
+        public void Day5Exercise2()
+        {
+            var adv = new AdventOfCodeDay5();
+            string password = adv.GetPassword2(Input, 8);
+
+            Assert.AreEqual("694190CD", password);
+        }
+
+
         [TestMethod]
         public void TestCryptoAgainstSample()
         {
@@ -30,6 +41,15 @@ namespace AdventOfCode.Tests
             string password = adv.GetPassword("abc", 1);
 
             Assert.AreEqual("1", password);
+        }
+
+        [TestMethod]
+        public void TestCryptoAgainstSample2()
+        {
+            var adv = new AdventOfCodeDay5();
+            string password = adv.GetPassword2("abc", 8);
+
+            Assert.AreEqual("05ACE8E3", password);
         }
     }
 }
