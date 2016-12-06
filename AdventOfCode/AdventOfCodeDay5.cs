@@ -9,28 +9,7 @@ namespace AdventOfCode
 {
     public class AdventOfCodeDay5
     {
-        public string GetPassword(string input, int iterations)
-        {
-            Crypto hasher = new Crypto();
-
-            var doorIdChars = new List<char>();
-            int hashIndex = 1;
-            while (doorIdChars.Count < iterations)
-            {
-                string hashInput = input + hashIndex++;
-
-                string hexString = hasher.ComputeMD5Hash(hashInput);
-
-                if (hexString[0] == '0' && hexString[1] == '0' && hexString[2] == '0' && hexString[3] == '0' && hexString[4] == '0')
-                {
-                    doorIdChars.Add(hexString[5]);
-                }
-            }
-
-            return new string(doorIdChars.ToArray());
-        }
-
-        public string GetPassword2(string input, int iterations)
+        private string DecryptWith(string input, int iterations, Action<Dictionary<int, char>, string> implementation)
         {
             Crypto hasher = new Crypto();
 
@@ -42,16 +21,39 @@ namespace AdventOfCode
 
                 string hexString = hasher.ComputeMD5Hash(hashInput);
 
-                if (hexString[0] == '0' && hexString[1] == '0' && hexString[2] == '0' && hexString[3] == '0' && hexString[4] == '0')
+                if (hexString[0] == '0' && 
+                    hexString[1] == '0' && 
+                    hexString[2] == '0' && 
+                    hexString[3] == '0' && 
+                    hexString[4] == '0')
                 {
-                    if (int.TryParse(hexString[5].ToString(), out int position) && position <= 7 && !doorIdChars.ContainsKey(position))
-                    {
-                        doorIdChars.Add(position, hexString[6]);
-                    }
+                    implementation(doorIdChars, hexString);
                 }
             }
 
             return new string(doorIdChars.OrderBy(x => x.Key).Select(x => x.Value).ToArray());
+        }
+
+        public string DecryptAddAtPositionStrategy(string input, int iterations)
+        {
+            return DecryptWith(input, iterations, (chars, hash) =>
+            {
+                if (int.TryParse(hash[5].ToString(), out int position) == false) return;
+
+                if (position <= 7 && !chars.ContainsKey(position))
+                {
+                    chars.Add(position, hash[6]);
+                }
+            });
+        }
+
+        public string DecryptAppendStrategy(string input, int iterations)
+        {
+            return DecryptWith(input, iterations, (chars, hash) =>
+            {
+                int nextIndex = chars.Keys.Count + 1;
+                chars.Add(nextIndex, hash[5]);
+            });
         }
     }
 }
