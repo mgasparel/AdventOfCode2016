@@ -35,7 +35,7 @@ namespace AdventOfCode.Tests
 
 
         [TestMethod]
-        public void TestCryptoAgainstSample()
+        public void TestAppendStrategyAgainstSample()
         {
             var adv = new AdventOfCodeDay5();
             string password = adv.DecryptAppendStrategy("abc", 1);
@@ -44,7 +44,7 @@ namespace AdventOfCode.Tests
         }
 
         [TestMethod]
-        public void TestCryptoAgainstSample2()
+        public void TestAddAtPositionStrategyAgainstSample2()
         {
             var adv = new AdventOfCodeDay5();
             string password = adv.DecryptAddAtPositionStrategy("abc", 8);
